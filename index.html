@@ -15,7 +15,7 @@
             border-radius: 10px;
             margin-top: 10px;
             margin-bottom: 10px;
-            
+            cursor: pointer;
         }
         .container{
             display:flex;
@@ -31,8 +31,9 @@
     <div id="app">
         <div class="container" v-for='r in rows' >
             <div  v-for='c in columns' >
-                <div class="cell" :class='{active:(active[0] == r && active[1] == c)}'>
-                    <div class="inside">{{r}},{{c}}</div>
+                <div class="cell" @click="selected(r,c)" :class='{active:isActive(r,c)}'
+                >
+                    <div class="inside" >{{r}},{{c}}</div>
                 </div>
      </div>
      </div>
@@ -47,6 +48,16 @@
             rows:10,
             columns:10,
             active:[1,1]
+        },
+        methods:{
+            selected(r,c){
+                this.active[0]=r;
+                this.active[1]=c;
+                
+            },
+            isActive(r,c){
+                return (this.active[0] == r && this.active[1] == c);
+            }
         }
     })
     </script>
