@@ -15,14 +15,23 @@
             border-radius: 10px;
             margin-top: 10px;
             margin-bottom: 10px;
+            
+        }
+        .container{
+            display:flex;
+            flex-direction: row;
         }
         </style>
 </head>
 <body>
     <div id="app">
-        <div class="cell">
-            <div class="inside">1</div>
-        </div>
+        <div class="container" v-for='r in rows' >
+            <div  v-for='c in columns' >
+                <div class="cell">
+                    <div class="inside">{{r}},{{c}}</div>
+                </div>
+     </div>
+     </div>
     {{ message }}
     </div>
 
@@ -30,7 +39,9 @@
     var app = new Vue({
         el: '#app',
         data: {
-            message: 'Powodzenia'
+            message: 'Powodzenia',
+            rows:10,
+            columns:10
         }
     })
     </script>
