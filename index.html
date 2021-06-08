@@ -28,10 +28,11 @@
         </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" tabindex="0" @keydown="test" @keyup.down='down()' @keyup.up='up()'
+    @keyup.left='left()' @keyup.right='right()'>
         <div class="container" v-for='r in rows' >
             <div  v-for='c in columns' >
-                <div class="cell" @click="selected(r,c)" :class='{active:isActive(r,c)}'
+                <div class="cell" @click="selected(r,c)" :class='{active:focus}'
                 >
                     <div class="inside" >{{r}},{{c}}</div>
                 </div>
@@ -47,7 +48,10 @@
             message: 'Powodzenia',
             rows:10,
             columns:10,
-            active:[1,1]
+            active:[1,1],
+            focus:null,
+            inR: 0,
+            inC:0
         },
         methods:{
             selected(r,c){
@@ -57,7 +61,50 @@
             },
             isActive(r,c){
                 return (this.active[0] == r && this.active[1] == c);
+            },
+            test: function(event) {
+      switch (event.keyCode) {
+        case 38:
+          if (this.focus == null) {
+            this.focus = 0;
+          } else if (this.focus > 0) {
+            this.focus--;
+          }
+          break;
+        case 40:
+          if (this.focus == null) {
+            this.focus = 0;
+          } else if (this.focus < this.items.length - 1) {
+            this.focus++;
+          }
+          break;
+      }
+    } ,     
+        
+        down() {
+            if (this.inR < this.rows) {
+                this.inR += 1;
             }
+            console.log(this.inR);
+        },
+        up() {
+            if (this.inR > 0) {
+                this.inR -= 1;
+            }
+            console.log(this.inR);
+        },
+        right() {
+            if (this.inC < this.columns) {
+                this.inC += 1;
+            }
+            console.log(this.inC);
+        },
+        right() {
+            if (this.inC > 0) {
+                this.inC -= 1;
+            }
+            console.log(this.inC);
+        }
         }
     })
     </script>
