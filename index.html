@@ -2,20 +2,36 @@
 <html>
 <head>
     <title>Kolokwium</title>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue%22%3E</script>
 </head>
+<style>
+    .cell {
+        width: 50px;
+        height: 50px;
+        background: orange;
+        border: 1px solid gray;
+        border-radius: 10px;
+        margin-bottom: 10px; 
+        margin-right: 10px; 
+    }
+</style>
 <body>
-    <div id="app">
-    {{ message }}
-    </div>
 
-    <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Powodzenia'
-        }
-    })
-    </script>
+        <div id="app">
+            <div class ="cell">
+                {{ message }}
+            </div>
+        </div>
+
+        <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Powodzenia'
+            }
+        })
+        </script>
+
 </body>
+
 </html>
